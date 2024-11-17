@@ -1,4 +1,4 @@
-import { calculateSum } from '../../src/day1'
+import { calculateSum } from '../../../src/2023/day1'
 import { sampleData, puzzleData } from './testData'
 
 it('sample data test', () => {

@@ -1,4 +1,4 @@
-import { calculateGameIdsSumAndPowers } from '../../src/day2'
+import { calculateGameIdsSumAndPowers } from '../../../src/2023/day2'
 import { puzzleData, sampleData } from './testData'
 
 describe('part 1', () => {
