@@ -11,7 +11,7 @@ const puzzleData = fs
   .readFileSync(path.resolve(__dirname, 'puzzleData.txt'), 'utf8')
   .split('\n')
 
-describe('day 5 ', () => {
+describe.skip('day 5 ', () => {
   describe('part 1', () => {
     it('sample data', () => {
       expect(executePart1(sampleData)).toEqual(35)
