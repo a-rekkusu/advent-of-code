@@ -1,10 +1,10 @@
-type Card = {
-  cardNumber: number
-  instances: number
-  winningNumbers: number[]
-  myNumbers: number[]
-  matchingNumbers: number[]
-  nextCardsCopied: number
+interface Card {
+  cardNumber: number;
+  instances: number;
+  winningNumbers: number[];
+  myNumbers: number[];
+  matchingNumbers: number[];
+  nextCardsCopied: number;
 }
 
 export function execute(input: string[]): number {

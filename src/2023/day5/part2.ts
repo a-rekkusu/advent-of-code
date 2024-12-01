@@ -1,14 +1,14 @@
-type RangeMap = {
+interface RangeMap {
   destinationRangeStart: number
   sourceRangeStart: number
   rangeLength: number
 }
 
-type FromToMap = {
+interface FromToMap {
   maps: RangeMap[]
 }
 
-type Range = {
+interface Range {
   from: number
   to: number
 }
@@ -83,10 +83,8 @@ function prepareData(input: string[]): {
 } {
   const preparedData: FromToMap[] = []
   let seeds: number[] = []
-  let newMap = false
   input.forEach((line) => {
     if (line.length === 0) {
-      newMap = true
       return
     }
     if (line.includes('seeds:')) {
@@ -94,14 +92,12 @@ function prepareData(input: string[]): {
         .split(': ')[1]
         .split(' ')
         .map((x) => +x)
-      newMap = false
       return
     }
     if (line.includes('map:')) {
       preparedData.push({
         maps: []
       })
-      newMap = false
       return
     } else {
       preparedData.at(-1)?.maps.push({

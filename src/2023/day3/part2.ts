@@ -1,21 +1,21 @@
-type PartNumber = {
-  value: number
-  isRelevant: boolean // isAdjacent to symbol other than .
-  startIndex: number
-  endIndex: number
+interface PartNumber {
+  value: number;
+  isRelevant: boolean; // isAdjacent to symbol other than .
+  startIndex: number;
+  endIndex: number;
 }
 
-type EngineSymbol = {
-  index: number
-  value: string
-  adjacentNumbers: number[]
-  isAtStartOfLine: boolean
-  isAtEndOfLine: boolean
+interface EngineSymbol {
+  index: number;
+  value: string;
+  adjacentNumbers: number[];
+  isAtStartOfLine: boolean;
+  isAtEndOfLine: boolean;
 }
 
-type Line = {
-  partNumbers: PartNumber[]
-  symbols: EngineSymbol[]
+interface Line {
+  partNumbers: PartNumber[];
+  symbols: EngineSymbol[];
 }
 
 export function execute(input: string[]): number {

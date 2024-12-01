@@ -1,8 +1,8 @@
-type Card = {
-  winningNumbers: number[]
-  myNumbers: number[]
-  matchingNumbers: number[]
-  score: number
+interface Card {
+  winningNumbers: number[];
+  myNumbers: number[];
+  matchingNumbers: number[];
+  score: number;
 }
 
 export function execute(input: string[]): number {

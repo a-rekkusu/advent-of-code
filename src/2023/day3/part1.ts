@@ -1,4 +1,4 @@
-type PartNumber = {
+interface PartNumber {
   value: number
   isRelevant: boolean // isAdjacent to symbol other than .
   startIndex: number
@@ -7,12 +7,12 @@ type PartNumber = {
   isAtEndOfLine: boolean
 }
 
-type EngineSymbol = {
+interface EngineSymbol {
   index: number
   value: string
 }
 
-type Line = {
+interface Line {
   partNumbers: PartNumber[]
   symbols: EngineSymbol[]
 }

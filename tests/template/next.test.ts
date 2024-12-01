@@ -1,15 +1,8 @@
-import fs from 'fs'
-import path from 'path'
-import { execute as executePart1 } from '../../src/template/part1'
-import { execute as executePart2 } from '../../src/template/part2'
+import { executePart1 } from '../../src/template/part1'
+import { executePart2 } from '../../src/template/part2'
+import { readData } from '../utils/readFile'
 
-const sampleData = fs
-  .readFileSync(path.resolve(__dirname, 'sampleData.txt'), 'utf8')
-  .split('\n')
-
-const puzzleData = fs
-  .readFileSync(path.resolve(__dirname, 'puzzleData.txt'), 'utf8')
-  .split('\n')
+const { sampleData, puzzleData } = readData(2024, 0o1)
 
 describe('template', () => {
   describe('part 1', () => {

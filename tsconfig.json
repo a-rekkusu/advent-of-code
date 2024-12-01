@@ -12,6 +12,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "useUnknownInCatchVariables": true,
+    "useUnknownInCatchVariables": true
   }
 }
