@@ -16,8 +16,10 @@ export function executePart2(input: string[]): number {
   })
 
   const similarities: number[] = []
+  const hasRepeatingNumbers = new Set(list1).size !== list1.length
+
   for (const [key, value] of Object.entries(counts)) {
-    if (input.length === 6) {
+    if (hasRepeatingNumbers) {
       similarities.push(+key * value * value)
       // the puzzle data has no repeating numbers in the left list
     } else similarities.push(+key * value)
