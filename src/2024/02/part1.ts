@@ -20,17 +20,25 @@ export function executePart1(input: string[]): number {
 }
 
 function isSafeLevel(previous: number, current: number, isAscending: boolean | null) : { isAscending: boolean | null; isSafe: boolean}  {
-    if (isAscending === null) {
-        if (previous < current && current - previous <= 3) return { isAscending: true, isSafe: true }
-        if (previous > current && previous - current <= 3) return { isAscending: false, isSafe: true }
-        return { isAscending: null, isSafe: false}
-    }
-    
     if (isAscending) {
-        if (previous < current && current - previous <= 3) return { isAscending: true, isSafe: true }
+        if (isSafeAscending(previous, current)) return { isAscending: true, isSafe: true }
+        return { isAscending: null, isSafe: false}
+    } else if (isAscending === false) {
+        if (isSafeDescending(previous, current)) return { isAscending: false, isSafe: true }
         return { isAscending: null, isSafe: false}
     } else {
-        if (previous > current && previous - current <= 3) return { isAscending: false, isSafe: true }
+        if (isSafeAscending(previous, current)) return { isAscending: true, isSafe: true }
+        if (isSafeDescending(previous, current)) return { isAscending: false, isSafe: true }
         return { isAscending: null, isSafe: false}
     }
+}
+
+function isSafeAscending(previous: number, current: number): boolean {
+    if (previous < current && current - previous <= 3) return true
+    return false
+}
+
+function isSafeDescending(previous: number, current: number): boolean {
+    if (previous > current && previous - current <= 3) return true
+    return false
 }
