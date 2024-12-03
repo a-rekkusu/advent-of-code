@@ -22,11 +22,41 @@ export function executePart2(input: string[]): number {
                 break
             }
         }
-        console.dir(`${record}, ${isRecordSafe}`, { depth: null })
+
+        if (problemIndex) {
+            const isMutationSafe = isRecordSafeMutation(record, problemIndex === 2 ? 0 : problemIndex - 1)
+            if (isMutationSafe || isRecordSafe) ++safeCount
+            continue
+        }
         if (isRecordSafe) ++safeCount
     }
 
     return safeCount
+}
+
+function isRecordSafeMutation(record: string[], problemIndex: number): boolean {
+    let isRecordSafe = true
+    let isAscending = null
+    const startIndex = problemIndex === 0 ? 2 : 1
+    for (let j = startIndex; j < record.length; j++) {
+        let previous = +record[j - 1]
+        if (j === problemIndex + 1)
+            previous = +record[problemIndex === 0 ? 0 : problemIndex - 1]
+        
+        const safeResult = isSafeLevel(previous, +record[j], isAscending)
+        isAscending = safeResult.isAscending
+        if (!safeResult.isSafe) {
+            if (!problemIndex) {
+                problemIndex = j
+                if (j === 1) isAscending = null
+                continue
+                } 
+                
+            isRecordSafe = false
+            break
+        }
+    }
+    return isRecordSafe
 }
 
 function isSafeLevel(previous: number, current: number, isAscending: boolean | null) : { isAscending: boolean | null; isSafe: boolean}  {
