@@ -24,7 +24,11 @@ export function executePart2(input: string[]): number {
         }
 
         if (problemIndex) {
-            const isMutationSafe = isRecordSafeMutation(record, problemIndex === 2 ? 0 : problemIndex - 1)
+            let isMutationSafe = false
+            if (!isRecordSafe) isMutationSafe = isRecordSafeMutation(record, 0)
+            if (problemIndex !== 2 && problemIndex !== 1)
+                isMutationSafe = isRecordSafeMutation(record, problemIndex - 1)
+            
             if (isMutationSafe || isRecordSafe) ++safeCount
             continue
         }
