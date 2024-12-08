@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 
 const puzzle = fs.readFileSync(path.resolve(__dirname, 'data.txt'), 'utf8').split('\n')
+const XMAS = 'XMAS'
 
 function solve(input: string[]): number {
     let xmasCount = 0
@@ -30,34 +31,34 @@ function searchXmas(fromIndex: number, line: string, previousLines: string[], ne
 }
 
 function findForwards(fromIndex: number, line: string): number { 
-    if (fromIndex > line.length - 5) return 0
-    if (line.substring(fromIndex, fromIndex + 4) === 'XMAS') return 1  
+    if (fromIndex > line.length - 4) return 0
+    if (line.substring(fromIndex, fromIndex + 4) === XMAS) return 1  
     return 0
 }   
 
 function findBackwards(fromIndex: number, line: string): number { 
     if (fromIndex < 3) return 0
-    if (line.substring(fromIndex - 3, fromIndex + 1) === 'SAMX') return 1  
+    if (line.substring(fromIndex - 3, fromIndex + 1) === XMAS.split('').reverse().join('')) return 1  
     return 0
 }   
 
 function findVertically(fromIndex: number, lines: string[]): number {
     if (!lines.length) return 0
     const result = 'X' + lines[0][fromIndex] + lines[1][fromIndex] + lines[2][fromIndex]
-    return result === 'XMAS' ? 1 : 0
+    return result === XMAS ? 1 : 0
 }
 
 function findDiagonally(fromIndex: number, lines: string[]): number {
     if (!lines.length) return 0
 
     let foundXmas = 0
-    if (fromIndex <= lines[0].length - 5) {
+    if (fromIndex <= lines[0].length - 4) {
         const result = 'X' + lines[0][fromIndex + 1] + lines[1][fromIndex + 2] + lines[2][fromIndex + 3] 
-        if (result === 'XMAS') ++foundXmas
+        if (result === XMAS) ++foundXmas
     }
     if (fromIndex >= 3) {
         const result = 'X' + lines[0][fromIndex - 1] + lines[1][fromIndex - 2] + lines[2][fromIndex - 3] 
-        if (result === 'XMAS') ++foundXmas
+        if (result === XMAS) ++foundXmas
     }
     return foundXmas 
 }
