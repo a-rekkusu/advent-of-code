@@ -22,11 +22,6 @@ function findRuleByKey(rules: Rule[], pageNumber: number): Rule | null {
   return rule ?? null
 }
 
-function findRulesByValue(rules: Rule[], pageNumber: number): Rule[] {
-  const result = rules.filter((rule) => rule.mustBeBefore.includes(pageNumber))
-  return result
-}
-
 function prepareData(input: string[]): Update[]  {
   const rules: Rule[] = []
   const updates: Update[] = []
