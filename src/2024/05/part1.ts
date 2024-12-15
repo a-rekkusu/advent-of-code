@@ -61,22 +61,12 @@ function prepareData(input: string[]): Update[]  {
   })
 
   // populate which rules to apply to updates
-  updates.forEach((update, i) => {
+  updates.forEach((update) => {
     const rulesByKey: Rule[] = []
-    // const rulesByValue: Rule[] = []
-    update.pages.map((updatePage, _j) => {
+    update.pages.map((updatePage) => {
       const ruleByKey = findRuleByKey(rules, updatePage)
       if (ruleByKey) rulesByKey.push(ruleByKey)
-      // rulesByValue.push(...findRulesByValue(rules, updatePage))
-
-      // if (j === update.pages.length - 1) {
-      //     rulesByValue = Array.from(new Set(rulesByValue).values())
-      // }
     })
-
-    // console.log('update', i)
-    // console.dir(rulesByKey, { depth: null })
-    // console.dir(rulesByValue, { depth: null })
 
     rulesByKey.forEach((rule) => {
       if (rule.mustBeBefore.filter((x) => update.pages.includes(x)).length)
@@ -92,13 +82,25 @@ function solve(input: string[]): number {
 
   const correctUpdates: Update[] = []
 
+  // apply rules
   updates.forEach((update) => {
-    update.pages.forEach((updatePage, i) => {
-        // apply rules
-    })
+    let isUpdateCorrect = true
+    for (let i = 0; i < update.pages.length; i++) {
+        if (i === 0) continue
+        const ruleToApply = update.rulesToApply.find((rule) => rule.pageNumber === update.pages[i])
+        if (!ruleToApply) continue
+        
+        for (let j = 0; j < i; j++) {
+          ruleToApply.mustBeBefore.forEach((before) => {
+            if (update.pages[j] === before) isUpdateCorrect = false
+          })
+        }
+    }
+
+    if (isUpdateCorrect) correctUpdates.push(update)
   })
 
   return correctUpdates.reduce((acc, val) => acc + val.middleNumber, 0)
 }
 
-assert.equal(solve(puzzle), 0)
+assert.equal(solve(puzzle), 143)
