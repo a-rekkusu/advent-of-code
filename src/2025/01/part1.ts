@@ -6,21 +6,20 @@ const puzzle = fs
     .split('\n')
 
 let dial = 50
-let zeroCounter = 0
+let zeroCount = 0
 
 puzzle.forEach((instruction) => {
     let distance = Number(instruction.substring(1))
-    if (distance >= 10) distance = Number(instruction.substring(instruction.length - 2))
 
-    if (instruction.charAt(0) === 'L') {
-        dial -= distance
-        if (Math.sign(dial) === -1) dial += 100
-    } else {
-        dial += distance
+    if (instruction.charAt(0) === 'R') {
+        dial += distance % 100
         if (dial >= 100) dial -= 100
+    } else {
+        dial -= distance % 100
+        if (Math.sign(dial) === -1) dial += 100
     }
 
-    if (dial === 0) zeroCounter++
+    if (dial === 0) zeroCount++
 })
 
-console.log(zeroCounter)
+console.log(zeroCount)
