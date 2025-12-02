@@ -9,7 +9,7 @@ let dial = 50
 let zeroCount = 0
 
 puzzle.forEach((instruction) => {
-    let distance = Number(instruction.substring(1))
+    const distance = Number(instruction.substring(1))
 
     if (instruction.charAt(0) === 'R') {
         dial += distance % 100

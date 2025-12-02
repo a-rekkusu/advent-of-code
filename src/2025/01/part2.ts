@@ -21,7 +21,7 @@ puzzle.forEach((instruction) => {
             zeroCount++
         }
     } else {
-        let fromDialPositionZero = dial === 0
+        const fromDialPositionZero = dial === 0
 
         dial -= distance % 100
 
