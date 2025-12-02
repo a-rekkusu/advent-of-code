@@ -3,12 +3,16 @@ import path from 'path'
 
 const puzzle = fs
     .readFileSync(path.resolve(__dirname, 'data.txt'), 'utf8')
-    .split('\n')
+    .split('\n') as Instruction[]
+    
+type Instruction =
+  `${"L" | "R"}${number}`;
+
 
 let dial = 50
 let zeroCount = 0
 
-puzzle.forEach((instruction) => {
+puzzle.forEach((instruction: Instruction) => {
     const distance = Number(instruction.substring(1))
     const hundredsCount = Math.floor(distance / 100)
     zeroCount += hundredsCount
