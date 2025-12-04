@@ -3,26 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
-  "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "test": "jest --silent=false --verbose=true --maxWorkers=1",
-    "t": "pnpm test",
-    "compile": "npx swc src -d dist",
-    "c": "pnpm compile",
-    "audit:fix": "pnpm audit --fix  && pnpm install"
-  },
+  "scripts": {},
   "devDependencies": {
-    "@swc-node/register": "1.11.1",
-    "@swc/cli": "0.7.9",
-    "@swc/core": "1.15.3",
-    "@swc/jest": "0.2.39",
     "@types/jest": "30.0.0",
     "@types/node": "^24.10.1",
     "@typescript-eslint/eslint-plugin": "8.48.0",
     "@typescript-eslint/parser": "8.48.0",
     "eslint": "9.39.1",
-    "jest": "30.2.0",
     "ts-node": "10.9.2",
     "typescript": "5.9.3",
     "typescript-eslint": "8.48.0"
