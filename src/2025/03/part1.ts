@@ -7,7 +7,6 @@ const banks = fs
     .readFileSync(path.resolve(__dirname, 'data.txt'), 'utf8')
     .split('\n')
 
-
 function getLargestNumber(bankSubstring: string): [number, number] {
     let maxNumber = Number(bankSubstring[0])
     let maxNumberIndex = 0
@@ -29,11 +28,11 @@ function getLargestNumber(bankSubstring: string): [number, number] {
 }
 
 function calculateMaximumJoltage(bank: string): number {
-    const [firstNumber, index1] = getLargestNumber(bank.substring(0, bank.length - 1))
+    const [firstNumber, index] = getLargestNumber(bank.substring(0, bank.length - 1))
 
-    const substring = bank.substring(index1 + 1)
+    const substring = bank.substring(index + 1)
 
-    const [secondNumber, _index2] = getLargestNumber(substring)
+    const [secondNumber, _] = getLargestNumber(substring)
 
     return Number(`${firstNumber}${secondNumber}`)
 }
