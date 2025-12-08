@@ -31,8 +31,9 @@ function getLargestNumber(
 }
 
 function calculateMaximumJoltage(bank: string): number {
-  let resultJoltage: number[] = []
+  const resultJoltage: number[] = []
   let startIndex = 0
+
   for (let i = 12; i > 0; i--) {
     const [maxNumber, index] = getLargestNumber(bank, startIndex, i)
     resultJoltage.push(maxNumber)
