@@ -1,44 +1,26 @@
-import globals from 'globals';
-import tseslint from 'typescript-eslint';
+import tseslint from '@typescript-eslint/eslint-plugin'
+import tsparser from '@typescript-eslint/parser'
+import prettierPlugin from 'eslint-plugin-prettier'
+import prettierConfig from 'eslint-config-prettier'
 
-/** @type {import('@types/eslint').Linter.Config[]} */
-export default tseslint.config(
-    {
-        ignores: ['dist', 'cjs', 'coverage', 'node_modules', 'eslint.config.mjs']
+export default [
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      parser: tsparser,
+      sourceType: 'module'
     },
-    tseslint.configs.stylisticTypeChecked,
-    {
-        extends: tseslint.configs.stylisticTypeChecked,
-        languageOptions: {
-            sourceType: 'commonjs',
-            parserOptions: {
-                project: 'tsconfig.json',
-                tsconfigRootDir: import.meta.dirname,
-            }
-        },
-        rules: {
-            'semi': ['error', 'never'],
-            'comma-dangle': ['error', 'never'],
-            'quotes': ['error', 'single'],
-            '@typescript-eslint/interface-name-prefix': 'off',
-            '@typescript-eslint/explicit-function-return-type': 'off',
-            '@typescript-eslint/explicit-module-boundary-types': 'off',
-            '@typescript-eslint/no-explicit-any': 'off',
-            '@typescript-eslint/no-non-null-assertion': 'off',
-            '@typescript-eslint/no-unused-vars': [
-                'warn',
-                { 'vars': 'all', 'varsIgnorePattern': '^_', 'args': 'after-used', 'argsIgnorePattern': '^_' }
-            ],
-            'no-unused-vars': 'off'
-        }
+    plugins: {
+      '@typescript-eslint': tseslint,
+      prettier: prettierPlugin
     },
-    {
-        files: ['tests/**/*.test.ts'],
-        languageOptions: {
-            globals: {
-                ...globals.jest,
-                ...globals.commonjs,
-            }
-        }
+    rules: {
+      ...tseslint.configs.recommended.rules,
+      ...prettierConfig.rules,
+      '@typescript-eslint/no-unused-vars': 'off',
+      semi: ['error', 'never'],
+      quotes: ['error', 'single'],
+      'prettier/prettier': 'error'
     }
-);
+  }
+]

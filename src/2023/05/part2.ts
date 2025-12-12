@@ -36,11 +36,7 @@ export function execute(input: string[]): number {
   let counter = 0
 
   sourceSeedRanges.forEach((sourceSeedRange, rangeIndex) => {
-    console.log(
-      `executing logic for source seed range ${rangeIndex}:`,
-      sourceSeedRange,
-      `current result: ${result}`
-    )
+    console.log(`executing logic for source seed range ${rangeIndex}:`, sourceSeedRange, `current result: ${result}`)
 
     for (let i = sourceSeedRange.from; i <= sourceSeedRange.to; i++) {
       const seedResult: number[] = [i]
@@ -53,12 +49,9 @@ export function execute(input: string[]): number {
 
           if (
             seedResult[outerMapIndex] >= numberMaps.sourceRangeStart &&
-            numberMaps.sourceRangeStart + numberMaps.rangeLength >=
-              seedResult[outerMapIndex]
+            numberMaps.sourceRangeStart + numberMaps.rangeLength >= seedResult[outerMapIndex]
           ) {
-            mappingResult =
-              numberMaps.destinationRangeStart +
-              (seedResult[outerMapIndex] - numberMaps.sourceRangeStart)
+            mappingResult = numberMaps.destinationRangeStart + (seedResult[outerMapIndex] - numberMaps.sourceRangeStart)
           } else if (innerMapIndex === fromToMap.maps.length - 1) {
             mappingResult = seedResult[outerMapIndex]
           }

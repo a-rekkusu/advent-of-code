@@ -93,11 +93,7 @@ function setRelevantNumbers(lines: Line[]): void {
     } else {
       // regular line, check before and after
       lines[i].partNumbers.forEach((partNumber) => {
-        checkForAdjacentSymbols(partNumber, [
-          lines[i],
-          lines[i - 1],
-          lines[i + 1]
-        ])
+        checkForAdjacentSymbols(partNumber, [lines[i], lines[i - 1], lines[i + 1]])
       })
     }
   }
@@ -107,17 +103,13 @@ function checkForAdjacentSymbols(partNumber: PartNumber, lines: Line[]): void {
   lines.forEach((line) => {
     line.symbols.forEach((engineSymbol) => {
       if (partNumber.isAtStartOfLine) {
-        if (engineSymbol.index <= partNumber.endIndex + 1)
-          partNumber.isRelevant = true
+        if (engineSymbol.index <= partNumber.endIndex + 1) partNumber.isRelevant = true
       } else if (partNumber.isAtEndOfLine) {
-        if (engineSymbol.index >= partNumber.startIndex - 1)
-          partNumber.isRelevant = true
+        if (engineSymbol.index >= partNumber.startIndex - 1) partNumber.isRelevant = true
       } else {
         if (
-          (engineSymbol.index <= partNumber.startIndex + 1 &&
-            engineSymbol.index >= partNumber.startIndex - 1) ||
-          (engineSymbol.index <= partNumber.endIndex + 1 &&
-            engineSymbol.index >= partNumber.endIndex - 1)
+          (engineSymbol.index <= partNumber.startIndex + 1 && engineSymbol.index >= partNumber.startIndex - 1) ||
+          (engineSymbol.index <= partNumber.endIndex + 1 && engineSymbol.index >= partNumber.endIndex - 1)
         )
           partNumber.isRelevant = true
       }

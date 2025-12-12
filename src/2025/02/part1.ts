@@ -3,9 +3,7 @@ import path from 'path'
 
 const startTime = performance.now()
 
-const puzzle = fs
-  .readFileSync(path.resolve(__dirname, 'data.txt'), 'utf8')
-  .split(',')
+const puzzle = fs.readFileSync(path.resolve(__dirname, 'data.txt'), 'utf8').split(',')
 
 type Range = { min: number; max: number }
 

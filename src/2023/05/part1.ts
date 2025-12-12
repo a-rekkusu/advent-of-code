@@ -25,9 +25,7 @@ export function execute(input: string[]): number {
           seedResult[i] >= numberMaps.sourceRangeStart &&
           numberMaps.sourceRangeStart + numberMaps.rangeLength >= seedResult[i]
         ) {
-          target =
-            numberMaps.destinationRangeStart +
-            (seedResult[i] - numberMaps.sourceRangeStart)
+          target = numberMaps.destinationRangeStart + (seedResult[i] - numberMaps.sourceRangeStart)
         } else if (j === fromToMap.maps.length - 1) {
           target = seedResult[i]
         }

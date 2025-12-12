@@ -3,15 +3,9 @@ import path from 'path'
 
 const startTime = performance.now()
 
-const banks = fs
-  .readFileSync(path.resolve(__dirname, 'data.txt'), 'utf8')
-  .split('\n')
+const banks = fs.readFileSync(path.resolve(__dirname, 'data.txt'), 'utf8').split('\n')
 
-function getLargestNumber(
-  bank: string,
-  startIndex: number,
-  distanceToEnd: number
-): [number, number] {
+function getLargestNumber(bank: string, startIndex: number, distanceToEnd: number): [number, number] {
   let maxNumber = Number(bank[startIndex])
   let maxNumberIndex = startIndex
 

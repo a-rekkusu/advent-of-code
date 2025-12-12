@@ -1,8 +1,8 @@
 interface Card {
-  winningNumbers: number[];
-  myNumbers: number[];
-  matchingNumbers: number[];
-  score: number;
+  winningNumbers: number[]
+  myNumbers: number[]
+  matchingNumbers: number[]
+  score: number
 }
 
 export function execute(input: string[]): number {

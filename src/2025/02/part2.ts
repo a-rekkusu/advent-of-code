@@ -3,9 +3,7 @@ import path from 'path'
 
 const startTime = performance.now()
 
-const puzzle = fs
-  .readFileSync(path.resolve(__dirname, 'data.txt'), 'utf8')
-  .split(',')
+const puzzle = fs.readFileSync(path.resolve(__dirname, 'data.txt'), 'utf8').split(',')
 
 type Range = { min: number; max: number }
 
@@ -18,11 +16,7 @@ function getTimesSubstringFits(target: string, substring: string): number {
   return Math.floor(target.length / substring.length)
 }
 
-function doesSubstringFitExactlyXTimes(
-  target: string,
-  substring: string,
-  times: number
-): boolean {
+function doesSubstringFitExactlyXTimes(target: string, substring: string, times: number): boolean {
   let startIndex = 0
   const sequences: string[] = []
 
@@ -32,10 +26,7 @@ function doesSubstringFitExactlyXTimes(
     startIndex += substring.length
   }
 
-  const totalLengthOfSequences = sequences.reduce(
-    (acc, sequence) => acc + sequence.length,
-    0
-  )
+  const totalLengthOfSequences = sequences.reduce((acc, sequence) => acc + sequence.length, 0)
   if (totalLengthOfSequences !== target.length) return false
 
   const sameSequences = Array.from(new Set(sequences))
@@ -48,19 +39,9 @@ function isIdInvalid(value: number): boolean {
 
   for (let i = startIndex; i > 0; i--) {
     const substring = valueAsString.substring(0, i)
-    const timesSubstringFits = getTimesSubstringFits(
-      valueAsString,
-      valueAsString.substring(0, i)
-    )
+    const timesSubstringFits = getTimesSubstringFits(valueAsString, valueAsString.substring(0, i))
 
-    if (
-      doesSubstringFitExactlyXTimes(
-        valueAsString,
-        substring,
-        timesSubstringFits
-      )
-    )
-      return true
+    if (doesSubstringFitExactlyXTimes(valueAsString, substring, timesSubstringFits)) return true
   }
 
   return false

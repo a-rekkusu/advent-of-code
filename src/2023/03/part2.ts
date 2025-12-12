@@ -1,21 +1,21 @@
 interface PartNumber {
-  value: number;
-  isRelevant: boolean; // isAdjacent to symbol other than .
-  startIndex: number;
-  endIndex: number;
+  value: number
+  isRelevant: boolean // isAdjacent to symbol other than .
+  startIndex: number
+  endIndex: number
 }
 
 interface EngineSymbol {
-  index: number;
-  value: string;
-  adjacentNumbers: number[];
-  isAtStartOfLine: boolean;
-  isAtEndOfLine: boolean;
+  index: number
+  value: string
+  adjacentNumbers: number[]
+  isAtStartOfLine: boolean
+  isAtEndOfLine: boolean
 }
 
 interface Line {
-  partNumbers: PartNumber[];
-  symbols: EngineSymbol[];
+  partNumbers: PartNumber[]
+  symbols: EngineSymbol[]
 }
 
 export function execute(input: string[]): number {
@@ -25,17 +25,10 @@ export function execute(input: string[]): number {
 
   const sum = preparedData
     .flatMap((line) => {
-      return line.symbols.filter(
-        (symbol) => symbol.adjacentNumbers.length === 2
-      )
+      return line.symbols.filter((symbol) => symbol.adjacentNumbers.length === 2)
     })
     .reduce((accumulator, currentLine) => {
-      return (
-        accumulator +
-        currentLine.adjacentNumbers.reduce(
-          (multiplier, currentNumber) => multiplier * currentNumber
-        )
-      )
+      return accumulator + currentLine.adjacentNumbers.reduce((multiplier, currentNumber) => multiplier * currentNumber)
     }, 0)
 
   return sum
@@ -116,17 +109,13 @@ function checkForAdjacentNumbers(symbol: EngineSymbol, lines: Line[]): void {
   lines.forEach((line) => {
     line.partNumbers.forEach((partNumber) => {
       if (symbol.isAtStartOfLine) {
-        if (partNumber.endIndex <= symbol.index + 1)
-          symbol.adjacentNumbers.push(partNumber.value)
+        if (partNumber.endIndex <= symbol.index + 1) symbol.adjacentNumbers.push(partNumber.value)
       } else if (symbol.isAtEndOfLine) {
-        if (partNumber.startIndex >= symbol.index - 1)
-          symbol.adjacentNumbers.push(partNumber.value)
+        if (partNumber.startIndex >= symbol.index - 1) symbol.adjacentNumbers.push(partNumber.value)
       } else {
         if (
-          (partNumber.startIndex <= symbol.index + 1 &&
-            partNumber.startIndex >= symbol.index - 1) ||
-          (partNumber.endIndex <= symbol.index + 1 &&
-            partNumber.endIndex >= symbol.index - 1)
+          (partNumber.startIndex <= symbol.index + 1 && partNumber.startIndex >= symbol.index - 1) ||
+          (partNumber.endIndex <= symbol.index + 1 && partNumber.endIndex >= symbol.index - 1)
         )
           symbol.adjacentNumbers.push(partNumber.value)
       }

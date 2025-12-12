@@ -12,8 +12,7 @@ function extractNumbers(input: string): void {
     return
   }
 
-  const matchedNumbers =
-    convertToNumber(firstMatch[0]) + convertToNumber(lastMatch[0])
+  const matchedNumbers = convertToNumber(firstMatch[0]) + convertToNumber(lastMatch[0])
   const result = parseInt(matchedNumbers)
 
   if (result < 11 || result > 99) {
