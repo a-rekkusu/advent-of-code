@@ -4,7 +4,9 @@
   "description": "",
   "license": "ISC",
   "scripts": {
-    "lint": "npx eslint . --fix && npx prettier --write ."
+    "lint": "npx eslint . --fix",
+    "format": "npx prettier --write .",
+    "lf": "npx eslint . --fix && npx prettier --write ."
   },
   "devDependencies": {
     "@eslint/js": "9.39.1",
